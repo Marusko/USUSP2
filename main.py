@@ -1,11 +1,7 @@
 import pandas as pd
 import numpy as np
 
-comp = 1
-tol = 0.000001
-repl = 100
-
-miss = pd.read_csv('data/v8_missing.csv')
+miss = pd.read_csv('data/v8_missing.csv').values
 compl = pd.read_csv('data/v8_complete.csv')
 #print(miss.describe())
 #print(compl.describe())
@@ -39,11 +35,18 @@ mask = np.isnan(miss)
 oldObjective = float('inf')
 
 for j in range(repl):
-    #pca_data = pca()
-    #imputed[np.isnan(v8_miss)] = pca_data[np.isnan(v8_miss)]
-    if np.linalg.norm(imputed - old) < tol:
+    pcaData = pca(imputed, comp)
+    imputed[mask] = pcaData[mask]
+    objective = np.sum((miss[~mask] - imputed[~mask]) ** 2)
+
+    if abs(oldObjective - objective) < tol:
+        print(f"Converged after {j + 1} iterations")
         break
     old = imputed
+    oldObjective = objective
+
+print("Imputed Data:")
+print(imputed)
 
 
 
