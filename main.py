@@ -42,7 +42,6 @@ for j in range(repl):
     if abs(oldObjective - objective) < tol:
         print(f"Converged after {j + 1} iterations")
         break
-    old = imputed
     oldObjective = objective
 
 print("Imputed Data:")
