@@ -3,6 +3,8 @@ import numpy as np
 
 miss = pd.read_csv('data/v8_missing.csv').values
 compl = pd.read_csv('data/v8_complete.csv')
+miss = pd.read_csv('data/edit.csv').values
+compl = pd.read_csv('data/editCompl.csv').values
 #print(miss.describe())
 #print(compl.describe())
 
