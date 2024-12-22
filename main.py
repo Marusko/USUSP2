@@ -49,6 +49,9 @@ print(imputed)
 diff = np.abs(compl - imputed)
 print("Difference between PCA and complete:")
 print(diff)
+print(f"Smallest difference: {np.min(diff[mask])}")
+print(f"Largest difference: {np.max(diff[mask])}")
+print(f"Average difference: {np.mean(diff[mask])}")
 
 
 
