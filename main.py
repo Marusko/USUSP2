@@ -20,8 +20,7 @@ def pca(data, n):
     covMatrix = np.cov(centered, rowvar=False)
     eigVal, eigVec = np.linalg.eigh(covMatrix)
 
-    sortedInd = np.argsort(eigVal)[::-1]
-    topEigVec = eigVec[:, sortedInd[:n]]
+    topEigVec = eigVec[:, -n:]
 
     pc = centered @ topEigVec
     reconstructed = (pc @ topEigVec.T) + meanVec
