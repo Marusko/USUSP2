@@ -1,8 +1,6 @@
 import pandas as pd
 import numpy as np
-
-miss = pd.read_csv('data/v8_missing.csv').values
-compl = pd.read_csv('data/v8_complete.csv')
+#np.set_printoptions(threshold=np.inf)
 miss = pd.read_csv('data/edit.csv').values
 compl = pd.read_csv('data/editCompl.csv').values
 #print(miss.describe())
@@ -48,6 +46,9 @@ for j in range(repl):
 
 print("Imputed Data:")
 print(imputed)
+diff = np.abs(compl - imputed)
+print("Difference between PCA and complete:")
+print(diff)
 
 
 
